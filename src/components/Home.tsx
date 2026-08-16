@@ -33,11 +33,12 @@ import {
   getSelectedKeyDefinitions,
 } from 'src/store/definitionsSlice';
 import {syncCustomMenuValuesFromRequest} from 'src/store/menusSlice';
-import {OVERRIDE_HID_CHECK} from 'src/utils/override';
+import {OVERRIDE_HID_CHECK} from '../utils/override';
 import {KeyboardValue} from 'src/utils/keyboard-api';
 import {useTranslation} from 'react-i18next';
 import {MessageDialog} from './inputs/message-dialog';
 import {formatNumberAsHex} from 'src/utils/format';
+import {AboutDialog} from './inputs/about-dialog';
 
 const ErrorHome = styled.div`
   background: var(--bg_gradient);
@@ -214,6 +215,7 @@ export const Home: React.FC<HomeProps> = (props) => {
     </ErrorHome>
   ) : (
     <>
+      <AboutDialog isOpen={true} />
       {invalidProtocolDevice && (
         <MessageDialog
           isOpen={true}

@@ -1,14 +1,18 @@
-# [VIA Web Application](https://usevia.app) - Your keyboards best friend
+# [MKKE - Mechanical Keyboard Key Editor](https://github.com/the-via/app) - Your keyboards best friend
+
+**MKKE is a fork of [VIA](https://usevia.app) (Visual Interface for Architects)** - a powerful, open-source web-based interface for configuring your [QMK](https://qmk.fm)-powered mechanical keyboard.
+
+Original VIA is maintained at: [https://github.com/the-via/app](https://github.com/the-via/app)
 
 ![android-chrome-192x192](https://user-images.githubusercontent.com/1714072/222621960-ddfb8ee6-a486-4c66-8852-b204ba7c807b.png)
 
 [![Azure Static Web Apps CI/CD](https://github.com/the-via/app/actions/workflows/azure.yml/badge.svg)](https://github.com/the-via/app/actions/workflows/azure.yml)
 
-VIA is a powerful, open-source web-based interface for configuring your [QMK](https://qmk.fm)-powered mechanical keyboard. It allows you to customize your keymaps, create macros, and adjust RGB settings (if it has RGB) on the fly, without needing to recompile your keyboard's firmware. This makes keyboard customization easier and more accessible for everyone.
+MKKE (forked from [VIA](https://usevia.app)) is a powerful, open-source web-based interface for configuring your [QMK](https://qmk.fm)-powered mechanical keyboard. It allows you to customize your keymaps, create macros, and adjust RGB settings (if it has RGB) on the fly, without needing to recompile your keyboard's firmware. This makes keyboard customization easier and more accessible for everyone.
 
-## Getting VIA to support your keyboard
+## Getting VIA support to your keyboard
 
-Are you a keyboard maker or a developer interested in adding support for your keyboard? We welcome contributions to the VIA project!
+MKKE leverages the same VIA protocol and definition system. Are you a keyboard maker or a developer interested in adding support for your keyboard? We welcome contributions to the VIA project!
 
 1. The source code of the keyboard **has to be merged** in [QMK Firmware Repositories](https://github.com/qmk/qmk_firmware) Master branch.
 2. Your `keymaps/via` keymap **has to be merged** in [VIA's QMK Userspace Repository](https://github.com/the-via/qmk_userspace_via) Main branch.
@@ -58,8 +62,24 @@ You can find it at [https://github.com/cebby2420/via-desktop](https://github.com
 
 **NOTE: This project has no official affiliation with VIA, and we cannot provide support for it.**
 
-## Facing Issues?
+## Legal & License
 
-If you encounter any issues or bugs while using the [VIA web application](https://usevia.app), please report them by opening an issue in the [Issues section](https://github.com/the-via/app/issues). This will help us to track down and resolve problems, and improve the VIA experience for everyone.
+**MKKE is a fork of [VIA](https://usevia.app) (Visual Interface for Architects)**, licensed under **GNU General Public License v3.0 (GPL v3)**.
+
+### GPL v3 Compliance
+
+As a modified version of VIA, MKKE complies with GPL v3 Section 5 requirements:
+- **Copyright notices** in `src/index.tsx` stating this is a fork
+- **Appropriate Legal Notices** displayed in the about dialog
+- **Full license text** available in the about dialog and `LICENSE` file
+- **License preservation** - entire codebase licensed under GPL v3
+
+### Attribution
+
+- **Original project**: [VIA](https://usevia.app) - https://github.com/the-via/app
+- **Original license**: GNU General Public License v3.0
+- **License text**: https://www.gnu.org/licenses/gpl-3.0.en.html
+
+If you encounter any issues or bugs while using [MKKE (fork of VIA)](https://usevia.app), please report them by opening an issue in the [Issues section](https://github.com/the-via/app/issues). This will help us to track down and resolve problems, and improve the VIA experience for everyone.
 
 Before reporting, please make sure to check if an issue has already been reported. Thank you!

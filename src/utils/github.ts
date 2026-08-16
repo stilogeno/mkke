@@ -18,7 +18,7 @@ export async function authGithub() {
   const isLocalhost = location.hostname === 'localhost';
   const redirect_uri = isLocalhost
     ? 'http://localhost:8080/github_oauth.html'
-    : 'https://usevia.app/github_oauth.html';
+    : 'https://mkke.app/github_oauth.html';
   const client_id = isLocalhost
     ? '4300c2892225537a065c'
     : '257d3d5bb57e29d1ce06';

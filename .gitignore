@@ -1,4 +1,7 @@
 .DS_STORE
+.DS_Store
+.mako-ai
+.mako
 .env
 .snowpack
 build
