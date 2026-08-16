@@ -1,73 +1,227 @@
-# [MKKE - Mechanical Keyboard Key Editor](https://github.com/the-via/app) - Your keyboards best friend
+# MKKE - Mechanical Keyboard Key Editor (VIA Fork)
 
-**MKKE is a fork of [VIA](https://usevia.app) (Visual Interface for Architects)** - a powerful, open-source web-based interface for configuring your [QMK](https://qmk.fm)-powered mechanical keyboard.
+A web-based interface for configuring QMK-powered mechanical keyboards via WebHID. Customize keymaps, create macros, and adjust RGB lighting in real-time without recompiling firmware.
 
-Original VIA is maintained at: [https://github.com/the-via/app](https://github.com/the-via/app)
+**MKKE is a fork of [VIA](https://usevia.app) (Visual Interface for Architects)** - the original project is maintained at [https://github.com/the-via/app](https://github.com/the-via/app).
 
-![android-chrome-192x192](https://user-images.githubusercontent.com/1714072/222621960-ddfb8ee6-a486-4c66-8852-b204ba7c807b.png)
+![MKKE Screenshot](https://user-images.githubusercontent.com/1714072/222621960-ddfb8ee6-a486-4c66-8852-b204ba7c807b.png)
 
-[![Azure Static Web Apps CI/CD](https://github.com/the-via/app/actions/workflows/azure.yml/badge.svg)](https://github.com/the-via/app/actions/workflows/azure.yml)
+## Features
 
-MKKE (forked from [VIA](https://usevia.app)) is a powerful, open-source web-based interface for configuring your [QMK](https://qmk.fm)-powered mechanical keyboard. It allows you to customize your keymaps, create macros, and adjust RGB settings (if it has RGB) on the fly, without needing to recompile your keyboard's firmware. This makes keyboard customization easier and more accessible for everyone.
+### 🎹 Real-time Keymap Editing
+- Configure key mappings for every key on your keyboard
+- Support for multiple layers (layers, option keys)
+- Custom option key configurations
+- Visual matrix view to see key relationships
 
-## Getting VIA support to your keyboard
+### 🎨 RGB Lighting Control
+- Adjust RGB backlight and RGBLight effects
+- Support for RGB Matrix keyboards
+- Custom lighting effects and patterns
+- Lighting menu customization
 
-MKKE leverages the same VIA protocol and definition system. Are you a keyboard maker or a developer interested in adding support for your keyboard? We welcome contributions to the VIA project!
+### 📝 Macro Creation
+- Record and play back macro sequences
+- Create custom key combinations
+- Debug and test macros in real-time
+- Save/load macro configurations
 
-1. The source code of the keyboard **has to be merged** in [QMK Firmware Repositories](https://github.com/qmk/qmk_firmware) Master branch.
-2. Your `keymaps/via` keymap **has to be merged** in [VIA's QMK Userspace Repository](https://github.com/the-via/qmk_userspace_via) Main branch.
-3. Create a definition in JSON format for your keyboard and submit it as a pull request to [VIA's Keyboards Repository](https://github.com/the-via/keyboards) Master branch.
+### 🖥️ 3D Keyboard Visualization
+- Interactive 3D rendering of your keyboard
+- Visual feedback for key presses and lighting
+- Real-time updates as you configure
 
-Please follow our [Specification documentation](https://www.caniusevia.com/docs/specification) carefully to ensure your pull request is smoothly reviewed and merged.
+### 🎛️ Custom Menus
+- Design custom menu structures
+- Rotary encoder support (Satisfaction75, etc.)
+- Custom feature integration
 
-## Local development setup
+### 💾 Save/Load Configurations
+- Save your configurations to the cloud
+- Load saved configurations for different keyboards
+- Share configurations with others
 
-Start by cloning [`the-via/keyboards`](github.com/the-via/keyboards) then install dependencies with `npm install` and finally `npm run build`. You should see
-the output folder `dist`. This should be copied or symlinked to our repo's `public/definitions` folder.
+## Getting Started
+
+### Prerequisites
+- **Browser**: Chrome, Edge, or other browsers with [WebHID support](https://caniuse.com/webhid)
+- **Keyboard**: A QMK-powered keyboard with VIA protocol enabled
+- **Firmware**: Your keyboard must be running VIA-compatible firmware
+
+### First Time Setup
+
+1. **Open MKKE** in your browser at `http://localhost:5173` (or deployed version)
+
+2. **Authorize your keyboard**
+   - Click the `+` button to authorize your keyboard via WebHID
+   - Your keyboard will appear in the device list
+
+3. **Select a keyboard definition**
+   - Go to the **Design** tab
+   - Upload the JSON definition file for your keyboard (provided by manufacturer)
+   - Or select from available keyboard definitions
+
+4. **Start configuring**
+   - Navigate to the **Configure** tab
+   - Use the menu on the left to access different configuration options:
+     - **Keycodes**: Map keys to different functions
+     - **Layouts**: Configure option keys and custom layouts
+     - **Macros**: Create and record macro sequences
+     - **Lighting**: Adjust RGB effects and colors
+     - **Save/Load**: Manage your configurations
+
+## Keyboard Definition Support
+
+MKKE leverages the VIA protocol and keyboard definition system. To add support for your keyboard:
+
+### For Keyboard Manufacturers
+1. Ensure keyboard firmware is merged in [QMK Firmware Repository](https://github.com/qmk/qmk_firmware)
+2. Create VIA keymap and merge in [VIA QMK Userspace Repository](https://github.com/the-via/qmk_userspace_via)
+3. Submit keyboard definition JSON to [VIA Keyboards Repository](https://github.com/the-via/keyboards)
+
+### For Developers
+- Follow the [VIA Specification](https://www.caniusevia.com/docs/specification) for keyboard definitions
+- Use VIA protocol v2 or v3 for keyboard communication
+- Ensure your keyboard supports the VIA protocol
+
+## Local Development
+
+### Development Commands
 
 ```bash
-# Inside the-via/app
-public/definitions -> ../../keyboards/dist
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+# Opens http://localhost:5173
+
+# Development with Electron
+npm run electron:dev
 ```
 
-### Useful commands
+### Build Commands
 
-#### `npm run dev`
+```bash
+# Generate keyboard definitions
+npm run build:kbs
 
-Runs the app in the development mode.
-Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+# Full build (definitions + TypeScript + Vite)
+npm run build
+# Outputs to dist/
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+# Build for Azure deployment
+npm run build:azure
+```
 
-#### `npm run build`
+### Keyboard Definitions
 
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
+Keyboard definitions are generated from the `@the-via/keyboards` package:
 
-#### `npm run test`
+```bash
+# Reinstall and rebuild keyboard definitions
+npm run refresh-kbs
 
-Launches the application test runner.
-Run with the `--watch` flag (`npm test -- --watch`) to run in interactive watch mode.
+# The definitions are placed in public/definitions/
+# This directory is symlinked to ../../keyboards/dist
+```
 
----
+### Development Structure
 
-This project is tested with [BrowserStack](https://www.browserstack.com/).
+```
+src/
+├── components/          # React components
+│   ├── panes/          # Main configuration panes (Configure, Design, Debug, etc.)
+│   ├── inputs/         # UI components (buttons, sliders, dialogs)
+│   ├── three-fiber/    # 3D rendering with Three.js
+│   └── ...
+├── store/              # Redux state management
+├── utils/              # Utility functions
+│   ├── keyboard-rendering.ts  # Keyboard layout rendering
+│   ├── keyboard-api.ts        # WebHID API wrapper
+│   └── ...
+└── types/              # TypeScript type definitions
 
-## Looking for an offline app?
+public/definitions/     # Keyboard definitions (generated)
+dist/                   # Build output
+```
 
-@cebby2420 has kindly made a desktop app that does so.
+## Architecture
 
-You can find it at [https://github.com/cebby2420/via-desktop](https://github.com/cebby2420/via-desktop).
+### Tech Stack
+- **Frontend**: React 18, TypeScript 5.9.3
+- **Build Tool**: Vite 8
+- **Styling**: styled-components
+- **3D Rendering**: Three.js, @react-three/fiber
+- **State Management**: Redux Toolkit
+- **Internationalization**: i18next + react-i18next
+- **Drag & Drop**: @dnd-kit/*
+- **Routing**: wouter
 
-**NOTE: This project has no official affiliation with VIA, and we cannot provide support for it.**
+### Key Modules
+- **`src/utils/keyboard-rendering.ts`**: Core keyboard layout rendering logic
+- **`src/utils/keyboard-api.ts`**: WebHID API abstraction layer
+- **`src/utils/device-store.ts`**: Device connection and management
+- **`src/store/devicesSlice.ts`**: Redux slice for device state
+- **`src/store/keymapSlice.ts`**: Redux slice for keymap configuration
+- **`src/store/definitionsSlice.ts`**: Redux slice for keyboard definitions
 
-## Legal & License
+### External Dependencies
+- **`@the-via/reader`**: VIA protocol parsing and keyboard definition reading
+- **`@the-via/pelpi`**: PeliPi protocol for custom menus
+- **`via-keyboards`**: Keyboard definition package
+
+## Deployment
+
+### Cloudflare Pages
+MKKE is deployed to Cloudflare Pages:
+- **Auto-deploy**: Push to `main` branch
+- **Manual trigger**: `repository_dispatch` with `definition_update` type
+- **Build process**: `bun run refresh-kbs && bun run build`
+
+### Local Preview
+```bash
+npm run preview
+# Serves the production build
+```
+
+## Troubleshooting
+
+### Keyboard Not Detected
+- Ensure your browser supports WebHID (Chrome, Edge recommended)
+- Check that your keyboard is running VIA-compatible firmware
+- Try refreshing the page and re-authorizing
+
+### Definitions Not Loading
+- Verify you have the correct JSON definition file for your keyboard
+- Check the definition format matches VIA specification
+- Use the Design tab to upload custom definitions
+
+### Lighting Not Working
+- Verify your keyboard supports RGB lighting
+- Check that the correct lighting menu is selected
+- Some keyboards require specific QMK lighting modules
+
+## Contributing
+
+MKKE is open source and welcomes contributions! Whether you're a keyboard manufacturer, developer, or enthusiast, we'd love to hear from you.
+
+### For Keyboard Makers
+- Add your keyboard to the definition database
+- Contribute to VIA protocol development
+- Report bugs and suggest features
+
+### For Developers
+- Fix bugs in the codebase
+- Add support for new keyboard features
+- Improve the UI/UX
+- Add new languages to i18n
+
+## License
 
 **MKKE is a fork of [VIA](https://usevia.app) (Visual Interface for Architects)**, licensed under **GNU General Public License v3.0 (GPL v3)**.
 
 ### GPL v3 Compliance
-
 As a modified version of VIA, MKKE complies with GPL v3 Section 5 requirements:
 - **Copyright notices** in `src/index.tsx` stating this is a fork
 - **Appropriate Legal Notices** displayed in the about dialog
@@ -75,11 +229,12 @@ As a modified version of VIA, MKKE complies with GPL v3 Section 5 requirements:
 - **License preservation** - entire codebase licensed under GPL v3
 
 ### Attribution
-
 - **Original project**: [VIA](https://usevia.app) - https://github.com/the-via/app
 - **Original license**: GNU General Public License v3.0
 - **License text**: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-If you encounter any issues or bugs while using [MKKE (fork of VIA)](https://usevia.app), please report them by opening an issue in the [Issues section](https://github.com/the-via/app/issues). This will help us to track down and resolve problems, and improve the VIA experience for everyone.
+## Issues and Support
+
+If you encounter any issues or bugs while using MKKE, please report them by opening an issue in the [Issues section](https://github.com/the-via/app/issues) of the original VIA repository. This will help track down and resolve problems, and improve the VIA experience for everyone.
 
 Before reporting, please make sure to check if an issue has already been reported. Thank you!
